@@ -1,0 +1,23 @@
+{
+  "name": "@razom-pay/core",
+  "version": "1.0.6",
+  "description": "Core utilities and shared setup",
+  "author": {
+    "name": "Kyrylo",
+    "email": "kyrylo.lytvishko@gmail.com"
+  },
+  "license": "ISC",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "prettier": "3.8.1"
+  },
+  "dependencies": {
+    "@trivago/prettier-plugin-sort-imports": "6.0.2"
+  },
+  "exports": {
+    "./prettier": "./src/prettier.config.mjs"
+  }
+}

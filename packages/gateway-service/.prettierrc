@@ -1,4 +1,3 @@
 {
-  "singleQuote": true,
-  "trailingComma": "all"
+  "extends": "@razom-pay/core/prettier"
 }

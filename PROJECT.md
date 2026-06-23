@@ -4,14 +4,21 @@
 
 ```
 nest/
+├── .github/workflows/
+│   ├── gateway-service.yml   ← build, test, lint, docker push
+│   └── publish-core.yml      ← publish @razom-pay/core в npm
 ├── .gitignore
-├── package.json
-├── pnpm-workspace.yaml
+├── package.json              ← packageManager: pnpm@11.9.0
+├── pnpm-workspace.yaml       ← packages: ["packages/*"]
 └── packages/
-    └── gateway-service/
-        ├── Dockerfile
-        ├── .dockerignore
-        ├── package.json
+    ├── gateway-service/
+    │   ├── Dockerfile
+    │   ├── .dockerignore
+    │   ├── .prettierrc        ← extends @razom-pay/core/prettier
+    │   ├── package.json
+    │   └── src/
+    └── core/
+        ├── package.json       ← @razom-pay/core (prettier config)
         └── src/
 ```
 
@@ -21,9 +28,15 @@ nest/
 # Встановлення залежностей (з кореня)
 pnpm install
 
+# Схвалити native збірки (unrs-resolver для Jest)
+pnpm approve-builds
+
 # Додати новий сервіс
 nest new packages/<name> --package-manager pnpm
-# Потім видалити .git зсередини, перенести .gitignore в корінь
+# Видалити .git зсередини, .gitignore перенести в корінь
+
+# Додати існуючий пакет
+# Скопіювати в packages/, видалити .git/.github/yarn.lock/node_modules/.gitignore
 
 # Build всіх сервісів
 pnpm -r build
@@ -38,12 +51,23 @@ docker build -f packages/gateway-service/Dockerfile -t gateway-service .
 ## Docker
 
 - **Multi-stage + pnpm deploy** — обраний підхід
-- Slim image (node:22-slim) замість Alpine через проблеми з native модулями (glibc vs musl)
-- `pnpm deploy` створює окрему папку з готовим до деплою сервісом
+- Slim image (node:22-slim) замість Alpine через glibc vs musl
+- `pnpm deploy --legacy` створює готову папку з dist + node_modules
+- Другий етап: просто `COPY --from=builder` + `CMD` (без npm install)
 - Фінальний образ ~80MB
 
-## Вирішені проблеми
+## CI/CD
 
-- **`@nestjs/schematics` cannot be resolved** — pnpm ховає пакети в content-addressable store, `schematics-cli` не може знайти. Рішення: `npm install -g @nestjs/cli`
-- **pnpm approve-builds** — `unrs-resolver` (native Rust бінарник для Jest) потребує схвалення. Виконати `pnpm approve-builds` перед install
-- **Версії пакетів** — `@nestjs/cli@11.0.23` та `@nestjs/schematics@11.1.0` можуть мати конфлікти при встановленні через pnpm
+- Бранч: `master`
+- **gateway-service.yml** — при змінах в `gateway-service` або `core`
+  - build job: `pnpm install` → lint → test → build
+  - docker job: Docker build-push в GHCR (cache: GHA)
+- **publish-core.yml** — при змінах в `core`
+  - `pnpm install` → `pnpm publish --no-git-checks`
+- Секрет: `NPM_TOKEN` в GitHub Settings → Secrets → Actions
+- Permissions: "Read and write permissions"
+
+## Prettier
+
+- `gateway-service` наслідує конфіг з `@razom-pay/core`
+- `.prettierrc`: `"extends": "@razom-pay/core/prettier"`
