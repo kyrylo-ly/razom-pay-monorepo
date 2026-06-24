@@ -4,13 +4,13 @@ on:
   push:
     branches: [master]
     paths:
-      - 'packages/gateway-service/**'
-      - 'packages/core/**'
+      - "packages/gateway-service/**"
+      - "packages/core/**"
   pull_request:
     branches: [master]
     paths:
-      - 'packages/gateway-service/**'
-      - 'packages/core/**'
+      - "packages/gateway-service/**"
+      - "packages/core/**"
 
 jobs:
   build:
@@ -29,7 +29,8 @@ jobs:
 
       - run: pnpm --filter gateway-service lint
 
-      - run: pnpm --filter gateway-service test
+      # enable when add tests
+      # - run: pnpm --filter gateway-service test
 
       - run: pnpm --filter gateway-service build
 
