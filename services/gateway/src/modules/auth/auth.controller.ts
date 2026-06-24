@@ -6,7 +6,8 @@ import {
 	HttpStatus,
 	Post,
 	Req,
-	Res
+	Res,
+	UnauthorizedException
 } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { ApiOperation } from '@nestjs/swagger'
@@ -75,7 +76,11 @@ export class AuthController {
 		@Req() req: Request,
 		@Res({ passthrough: true }) res: Response
 	) {
-		const refreshToken = req.cookies?.refreshToken as string
+		const cookies = req.cookies as Record<string, string | undefined>
+		const refreshToken = cookies?.refreshToken
+
+		if (!refreshToken)
+			throw new UnauthorizedException('Refresh token is missing')
 
 		const { accessToken, refreshToken: newRefreshToken } =
 			await this.client.call('refresh', { refreshToken })
