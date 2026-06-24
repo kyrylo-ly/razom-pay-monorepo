@@ -27,10 +27,10 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: pnpm run build
+        run: pnpm --filter @razom-pay/contracts run build
 
       - name: Generate TS Protobuf
-        run: pnpm generate
+        run: pnpm --filter @razom-pay/contracts generate
 
       - name: Publish package
         run: pnpm --filter @razom-pay/contracts publish --no-git-checks

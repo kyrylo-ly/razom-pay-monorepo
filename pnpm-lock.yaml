@@ -16,8 +16,8 @@ importers:
   packages/common:
     dependencies:
       '@razom-pay/contracts':
-        specifier: ^1.2.2
-        version: 1.2.8(@nestjs/common@11.1.27(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.27)(reflect-metadata@0.2.2)
+        specifier: workspace:*
+        version: link:../contracts
     devDependencies:
       '@nestjs/common':
         specifier: ^11.1.18
@@ -29,8 +29,8 @@ importers:
         specifier: ^11.1.18
         version: 11.1.27(@nestjs/common@11.1.27(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.27)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@razom-pay/core':
-        specifier: ^1.0.4
-        version: 1.0.4(prettier@3.8.4)
+        specifier: workspace:*
+        version: link:../core
       '@types/jest':
         specifier: ^30.0.0
         version: 30.0.0
@@ -924,14 +924,6 @@ packages:
   '@pkgr/core@0.3.6':
     resolution: {integrity: sha512-SEeaJLb3qBNF/OaXnaR1NmmBbFYk1zC0ZH/52fATcRPLFg/p791YrcyFFy44Bo9sLaGuSuLp5Q6axbb/O+v/RA==}
     engines: {node: ^14.18.0 || >=16.0.0}
-
-  '@razom-pay/contracts@1.2.8':
-    resolution: {integrity: sha512-EHrqew9JTGDYx6f8m7raet9nxNs/Su4vX9IzQ3ReU1Vss/rOQFTivqveWTWfjEneXIgIPE3JLGV2XdSpp2OAxQ==}
-
-  '@razom-pay/core@1.0.4':
-    resolution: {integrity: sha512-33Euh3UjbleJutKKML2ze01iMIaXfByFJm0pRbC7eBlSS2i9SJrxllXzOqTRTVFXxpjZ/J+kpV/0Xjy5gr2EbQ==}
-    peerDependencies:
-      prettier: 3.8.4
 
   '@scarf/scarf@1.4.0':
     resolution: {integrity: sha512-xxeapPiUXdZAE3che6f3xogoJPeZgig6omHEy1rIY5WVsB3H2BHNnZH+gHG6x91SCWyQCzWGsuL2Hh3ClO5/qQ==}
@@ -4238,36 +4230,6 @@ snapshots:
     optional: true
 
   '@pkgr/core@0.3.6': {}
-
-  '@razom-pay/contracts@1.2.8(@nestjs/common@11.1.27(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.27)(reflect-metadata@0.2.2)':
-    dependencies:
-      '@nestjs/microservices': 11.1.27(@nestjs/common@11.1.27(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.27)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      rxjs: 7.8.2
-      ts-proto: 2.11.8
-    transitivePeerDependencies:
-      - '@grpc/grpc-js'
-      - '@nestjs/common'
-      - '@nestjs/core'
-      - '@nestjs/websockets'
-      - amqp-connection-manager
-      - amqplib
-      - cache-manager
-      - ioredis
-      - kafkajs
-      - mqtt
-      - nats
-      - reflect-metadata
-
-  '@razom-pay/core@1.0.4(prettier@3.8.4)':
-    dependencies:
-      '@trivago/prettier-plugin-sort-imports': 6.0.2(prettier@3.8.4)
-      prettier: 3.8.4
-    transitivePeerDependencies:
-      - '@vue/compiler-sfc'
-      - prettier-plugin-ember-template-tag
-      - prettier-plugin-svelte
-      - supports-color
-      - svelte
 
   '@scarf/scarf@1.4.0': {}
 
