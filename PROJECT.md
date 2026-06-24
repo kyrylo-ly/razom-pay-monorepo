@@ -5,13 +5,13 @@
 ```
 nest/
 ├── .github/workflows/
-│   ├── gateway-service.yml   ← build, test, lint, docker push
+│   ├── gateway.yml   ← build, test, lint, docker push
 │   └── publish-core.yml      ← publish @razom-pay/core в npm
 ├── .gitignore
 ├── package.json              ← packageManager: pnpm@11.9.0
 ├── pnpm-workspace.yaml       ← packages: ["packages/*"]
 └── packages/
-    ├── gateway-service/
+    ├── gateway/
     │   ├── Dockerfile
     │   ├── .dockerignore
     │   ├── .prettierrc        ← extends @razom-pay/core/prettier
@@ -42,10 +42,10 @@ nest new packages/<name> --package-manager pnpm
 pnpm -r build
 
 # Запуск одного сервісу в dev
-pnpm --filter gateway-service start:dev
+pnpm --filter gateway start:dev
 
 # Docker build
-docker build -f services/gateway-service/Dockerfile -t gateway-service .
+docker build -f services/gateway/Dockerfile -t gateway .
 ```
 
 ## Docker
@@ -59,7 +59,7 @@ docker build -f services/gateway-service/Dockerfile -t gateway-service .
 ## CI/CD
 
 - Бранч: `main`
-- **gateway-service.yml** — при змінах в `gateway-service` або `core`
+- **gateway.yml** — при змінах в `gateway` або `core`
   - build job: `pnpm install` → lint → test → build
   - docker job: Docker build-push в GHCR (cache: GHA)
 - **publish-core.yml** — при змінах в `core`
@@ -69,5 +69,5 @@ docker build -f services/gateway-service/Dockerfile -t gateway-service .
 
 ## Prettier
 
-- `gateway-service` наслідує конфіг з `@razom-pay/core`
+- `gateway` наслідує конфіг з `@razom-pay/core`
 - `.prettierrc`: `"extends": "@razom-pay/core/prettier"`

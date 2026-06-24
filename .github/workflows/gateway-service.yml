@@ -4,12 +4,12 @@ on:
   push:
     branches: [main]
     paths:
-      - "services/gateway-service/**"
+      - "services/gateway/**"
       - "packages/core/**"
   pull_request:
     branches: [main]
     paths:
-      - "services/gateway-service/**"
+      - "services/gateway/**"
       - "packages/core/**"
 
 jobs:
@@ -27,12 +27,12 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      - run: pnpm --filter gateway-service lint
+      - run: pnpm --filter gateway lint
 
       # enable when add tests
-      # - run: pnpm --filter gateway-service test
+      # - run: pnpm --filter gateway test
 
-      - run: pnpm --filter gateway-service build
+      - run: pnpm --filter gateway build
 
   docker:
     needs: build
@@ -52,8 +52,8 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           context: .
-          file: services/gateway-service/Dockerfile
+          file: services/gateway/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}/gateway-service:${{ github.sha }}
+          tags: ghcr.io/${{ github.repository }}/gateway:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
