@@ -45,7 +45,7 @@ pnpm -r build
 pnpm --filter gateway-service start:dev
 
 # Docker build
-docker build -f packages/gateway-service/Dockerfile -t gateway-service .
+docker build -f services/gateway-service/Dockerfile -t gateway-service .
 ```
 
 ## Docker

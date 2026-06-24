@@ -4,12 +4,12 @@ on:
   push:
     branches: [main]
     paths:
-      - "packages/gateway-service/**"
+      - "services/gateway-service/**"
       - "packages/core/**"
   pull_request:
     branches: [main]
     paths:
-      - "packages/gateway-service/**"
+      - "services/gateway-service/**"
       - "packages/core/**"
 
 jobs:
@@ -52,7 +52,7 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           context: .
-          file: packages/gateway-service/Dockerfile
+          file: services/gateway-service/Dockerfile
           push: true
           tags: ghcr.io/${{ github.repository }}/gateway-service:${{ github.sha }}
           cache-from: type=gha

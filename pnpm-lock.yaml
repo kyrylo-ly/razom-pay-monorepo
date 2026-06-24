@@ -78,7 +78,35 @@ importers:
         specifier: 3.8.4
         version: 3.8.4
 
-  packages/gateway-service:
+  packages/passport:
+    dependencies:
+      '@nestjs/common':
+        specifier: ^11.1.17
+        version: 11.1.27(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/core':
+        specifier: ^11.1.17
+        version: 11.1.27(@nestjs/common@11.1.27(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@11.1.27)(@nestjs/platform-express@11.1.27)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      reflect-metadata:
+        specifier: 0.2.2
+        version: 0.2.2
+      rxjs:
+        specifier: ^7.8.2
+        version: 7.8.2
+    devDependencies:
+      '@razom-pay/core':
+        specifier: workspace:*
+        version: link:../core
+      '@types/node':
+        specifier: ^25.5.0
+        version: 25.9.4
+      prettier:
+        specifier: 3.8.4
+        version: 3.8.4
+      typescript:
+        specifier: ^6.0.2
+        version: 6.0.3
+
+  services/gateway-service:
     dependencies:
       '@nestjs/common':
         specifier: ^11.0.1
@@ -128,7 +156,7 @@ importers:
         version: 11.1.27(@nestjs/common@11.1.27(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.27)(@nestjs/microservices@11.1.27)(@nestjs/platform-express@11.1.27)
       '@razom-pay/core':
         specifier: workspace:*
-        version: link:../core
+        version: link:../../packages/core
       '@types/express':
         specifier: ^5.0.0
         version: 5.0.6
@@ -183,34 +211,6 @@ importers:
       typescript-eslint:
         specifier: ^8.20.0
         version: 8.62.0(eslint@9.39.4)(typescript@5.9.3)
-
-  packages/passport:
-    dependencies:
-      '@nestjs/common':
-        specifier: ^11.1.17
-        version: 11.1.27(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/core':
-        specifier: ^11.1.17
-        version: 11.1.27(@nestjs/common@11.1.27(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@11.1.27)(@nestjs/platform-express@11.1.27)(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      reflect-metadata:
-        specifier: 0.2.2
-        version: 0.2.2
-      rxjs:
-        specifier: ^7.8.2
-        version: 7.8.2
-    devDependencies:
-      '@razom-pay/core':
-        specifier: workspace:*
-        version: link:../core
-      '@types/node':
-        specifier: ^25.5.0
-        version: 25.9.4
-      prettier:
-        specifier: 3.8.4
-        version: 3.8.4
-      typescript:
-        specifier: ^6.0.2
-        version: 6.0.3
 
 packages:
 
