@@ -1,0 +1,39 @@
+{
+	"name": "@razom-pay/common",
+	"version": "1.1.11",
+	"description": "Core shared components for Razom Pay microservice ecosystem",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"postbuild": "rm -rf node_modules/@nestjs",
+		"format": "prettier --write 'src/**/*.ts'",
+		"test": "jest"
+	},
+	"devDependencies": {
+		"@nestjs/common": "^11.1.18",
+		"@nestjs/config": "^4.0.4",
+		"@nestjs/microservices": "^11.1.18",
+		"@razom-pay/core": "^1.0.4",
+		"@types/jest": "^30.0.0",
+		"@types/node": "^25.6.0",
+		"jest": "^30.3.0",
+		"prettier": "^3.8.1",
+		"ts-jest": "^29.4.9",
+		"typescript": "^6.0.2"
+	},
+	"peerDependencies": {
+		"@nestjs/common": "^11",
+		"@nestjs/config": "^4",
+		"@nestjs/microservices": "^11"
+	},
+	"dependencies": {
+		"@razom-pay/contracts": "^1.2.2"
+	}
+}
