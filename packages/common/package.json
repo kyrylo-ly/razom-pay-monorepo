@@ -1,6 +1,6 @@
 {
 	"name": "@razom-pay/common",
-	"version": "1.1.11",
+	"version": "1.1.12",
 	"description": "Core shared components for Razom Pay microservice ecosystem",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
