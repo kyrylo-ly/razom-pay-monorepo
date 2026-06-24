@@ -51,7 +51,7 @@ docker build -f services/gateway/Dockerfile -t gateway .
 ## Docker
 
 - **Multi-stage + pnpm deploy** — обраний підхід
-- Slim image (node:22-slim) замість Alpine через glibc vs musl
+- Slim image (node:24-slim) замість Alpine через glibc vs musl
 - `pnpm deploy --legacy` створює готову папку з dist + node_modules
 - Другий етап: просто `COPY --from=builder` + `CMD` (без npm install)
 - Фінальний образ ~80MB

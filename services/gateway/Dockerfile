@@ -1,4 +1,4 @@
-FROM node:22.19.0-slim AS builder
+FROM node:24-slim AS builder
 WORKDIR /app
 
 RUN corepack enable
@@ -12,7 +12,7 @@ RUN pnpm --filter gateway... build
 RUN pnpm --filter gateway deploy --legacy /app/deploy
 
 
-FROM node:22.19.0-slim AS runner
+FROM node:24-slim AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
