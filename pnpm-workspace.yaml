@@ -1,5 +1,9 @@
 packages:
   - "packages/*"
+overrides:
+  "@trivago/prettier-plugin-sort-imports": 6.0.2
+  prettier: 3.8.4
+  "reflect-metadata": 0.2.2
 allowBuilds:
   "@scarf/scarf": true
   unrs-resolver: true

@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@trivago/prettier-plugin-sort-imports': 6.0.2
+  prettier: 3.8.4
+  reflect-metadata: 0.2.2
+
 importers:
 
   .: {}
@@ -44,7 +49,7 @@ importers:
         specifier: ^4.6.1
         version: 4.6.1(@nestjs/common@11.1.27(reflect-metadata@0.2.2)(rxjs@7.8.2))(pino-http@11.0.0)(pino@10.3.1)(rxjs@7.8.2)
       reflect-metadata:
-        specifier: ^0.2.2
+        specifier: 0.2.2
         version: 0.2.2
       rxjs:
         specifier: ^7.8.1
@@ -96,7 +101,7 @@ importers:
         specifier: ^30.0.0
         version: 30.4.2(@types/node@24.13.2)(ts-node@10.9.2(@types/node@24.13.2)(typescript@5.9.3))
       prettier:
-        specifier: ^3.8.4
+        specifier: 3.8.4
         version: 3.8.4
       source-map-support:
         specifier: ^0.5.21
@@ -132,7 +137,7 @@ importers:
         specifier: ^11.1.17
         version: 11.1.27(@nestjs/common@11.1.27(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.27)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       reflect-metadata:
-        specifier: ^0.2.2
+        specifier: 0.2.2
         version: 0.2.2
       rxjs:
         specifier: ^7.8.2
@@ -145,7 +150,7 @@ importers:
         specifier: ^25.5.0
         version: 25.9.4
       prettier:
-        specifier: ^3.8.4
+        specifier: 3.8.4
         version: 3.8.4
       typescript:
         specifier: ^6.0.2
@@ -717,7 +722,7 @@ packages:
     peerDependencies:
       class-transformer: '>=0.4.1'
       class-validator: '>=0.13.2'
-      reflect-metadata: ^0.1.12 || ^0.2.0
+      reflect-metadata: 0.2.2
       rxjs: ^7.1.0
     peerDependenciesMeta:
       class-transformer:
@@ -739,7 +744,7 @@ packages:
       '@nestjs/microservices': ^11.0.0
       '@nestjs/platform-express': ^11.0.0
       '@nestjs/websockets': ^11.0.0
-      reflect-metadata: ^0.1.12 || ^0.2.0
+      reflect-metadata: 0.2.2
       rxjs: ^7.1.0
     peerDependenciesMeta:
       '@nestjs/microservices':
@@ -755,7 +760,7 @@ packages:
       '@nestjs/common': ^10.0.0 || ^11.0.0
       class-transformer: ^0.4.0 || ^0.5.0
       class-validator: ^0.13.0 || ^0.14.0 || ^0.15.0
-      reflect-metadata: ^0.1.12 || ^0.2.0
+      reflect-metadata: 0.2.2
     peerDependenciesMeta:
       class-transformer:
         optional: true
@@ -771,7 +776,7 @@ packages:
   '@nestjs/schematics@11.1.0':
     resolution: {integrity: sha512-lVxGZ46tcdItFMoXr6vyKWlnOsm1SZm/GUqAEDvy2RL4Q4O+3bkziAhrO7Y8JLssFUUvNFEGqAizI52WAxhjDw==}
     peerDependencies:
-      prettier: ^3.0.0
+      prettier: 3.8.4
       typescript: '>=4.8.2'
     peerDependenciesMeta:
       prettier:
@@ -785,7 +790,7 @@ packages:
       '@nestjs/core': ^11.0.1
       class-transformer: '*'
       class-validator: '*'
-      reflect-metadata: ^0.1.12 || ^0.2.0
+      reflect-metadata: 0.2.2
     peerDependenciesMeta:
       '@fastify/static':
         optional: true
@@ -849,7 +854,7 @@ packages:
     engines: {node: '>= 20'}
     peerDependencies:
       '@vue/compiler-sfc': 3.x
-      prettier: 2.x - 3.x
+      prettier: 3.8.4
       prettier-plugin-ember-template-tag: '>= 2.0.0'
       prettier-plugin-svelte: 3.x
       svelte: 4.x || 5.x
@@ -1708,7 +1713,7 @@ packages:
       '@types/eslint': '>=8.0.0'
       eslint: '>=8.0.0'
       eslint-config-prettier: '>= 7.0.0 <10.0.0 || >=10.1.0'
-      prettier: '>=3.0.0'
+      prettier: 3.8.4
     peerDependenciesMeta:
       '@types/eslint':
         optional: true
@@ -3797,7 +3802,7 @@ snapshots:
 
   '@jest/pattern@30.4.0':
     dependencies:
-      '@types/node': 24.13.2
+      '@types/node': 25.9.4
       jest-regex-util: 30.4.0
 
   '@jest/reporters@30.4.1':
@@ -3884,7 +3889,7 @@ snapshots:
       '@jest/schemas': 30.4.1
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 24.13.2
+      '@types/node': 25.9.4
       '@types/yargs': 17.0.35
       chalk: 4.1.2
 
@@ -5490,7 +5495,7 @@ snapshots:
   jest-haste-map@30.4.1:
     dependencies:
       '@jest/types': 30.4.1
-      '@types/node': 24.13.2
+      '@types/node': 25.9.4
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -5640,7 +5645,7 @@ snapshots:
   jest-util@30.4.1:
     dependencies:
       '@jest/types': 30.4.1
-      '@types/node': 24.13.2
+      '@types/node': 25.9.4
       chalk: 4.1.2
       ci-info: 4.4.0
       graceful-fs: 4.2.11
@@ -5668,13 +5673,13 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 24.13.2
+      '@types/node': 25.9.4
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
   jest-worker@30.4.1:
     dependencies:
-      '@types/node': 24.13.2
+      '@types/node': 25.9.4
       '@ungap/structured-clone': 1.3.2
       jest-util: 30.4.1
       merge-stream: 2.0.0
