@@ -2,7 +2,7 @@ name: Publish Passport
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - "packages/passport/**"
 

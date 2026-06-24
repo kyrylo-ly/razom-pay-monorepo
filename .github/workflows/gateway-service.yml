@@ -2,12 +2,12 @@ name: Gateway Service
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - "packages/gateway-service/**"
       - "packages/core/**"
   pull_request:
-    branches: [master]
+    branches: [main]
     paths:
       - "packages/gateway-service/**"
       - "packages/core/**"
@@ -37,7 +37,7 @@ jobs:
   docker:
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
 

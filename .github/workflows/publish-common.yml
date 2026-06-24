@@ -2,7 +2,7 @@ name: Publish Common
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - "packages/common/**"
 

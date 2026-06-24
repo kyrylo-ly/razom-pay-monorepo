@@ -58,7 +58,7 @@ docker build -f packages/gateway-service/Dockerfile -t gateway-service .
 
 ## CI/CD
 
-- Бранч: `master`
+- Бранч: `main`
 - **gateway-service.yml** — при змінах в `gateway-service` або `core`
   - build job: `pnpm install` → lint → test → build
   - docker job: Docker build-push в GHCR (cache: GHA)
