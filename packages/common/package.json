@@ -20,7 +20,7 @@
 		"@nestjs/common": "^11.1.18",
 		"@nestjs/config": "^4.0.4",
 		"@nestjs/microservices": "^11.1.18",
-		"@razom-pay/core": "^1.0.4",
+		"@razom-pay/core": "workspace:*",
 		"@types/jest": "^30.0.0",
 		"@types/node": "^25.6.0",
 		"jest": "^30.3.0",
@@ -34,6 +34,6 @@
 		"@nestjs/microservices": "^11"
 	},
 	"dependencies": {
-		"@razom-pay/contracts": "^1.2.2"
+		"@razom-pay/contracts": "workspace:*"
 	}
 }
