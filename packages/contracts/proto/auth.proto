@@ -1,0 +1,78 @@
+syntax= "proto3";
+package auth.v1;
+
+import "google/protobuf/empty.proto";
+
+service AuthService {
+  rpc SendOtp(SendOtpRequest) returns (SendOtpResponse);
+  rpc VerifyOtp(VerifyOtpRequest) returns (VerifyOtpResponse);
+  rpc Refresh(RefreshRequest) returns (RefreshResponse);
+
+  rpc TelegramInit(google.protobuf.Empty) returns (TelegramInitResponse);
+  rpc TelegramVerify(TelegramVerifyRequest) returns (TelegramVerifyResponse);
+
+  rpc TelegramComplete(TelegramCompleteRequest) returns (TelegramCompleteResponse);
+  rpc TelegramConsume(TelegramConsumeRequest) returns (TelegramConsumeResponse);  
+}
+
+message SendOtpRequest {
+  string identifier = 1;
+  string type = 2;
+}
+
+message SendOtpResponse {
+ bool ok =1;
+}
+
+message VerifyOtpRequest{
+  string identifier = 1;
+  string type = 2;
+  string code = 3;
+}
+
+message VerifyOtpResponse{
+  string access_token=1;
+  string refresh_token=2;
+}
+
+message RefreshRequest{
+  string refresh_token=1;
+}
+
+message RefreshResponse{
+  string access_token=1;
+  string refresh_token=2;
+}
+
+message TelegramInitResponse{
+  string url = 1;
+}
+
+message TelegramVerifyRequest{
+  map<string, string> query = 1;
+}
+
+message TelegramVerifyResponse{
+  string url = 1;
+  string access_token = 2;
+  string refresh_token = 3;
+}
+
+
+message TelegramCompleteRequest{
+  string session_id = 1;
+  string phone = 2;
+}
+
+message TelegramCompleteResponse{
+  string session_id=1;
+}
+
+message TelegramConsumeRequest{
+  string session_id = 1;
+}
+
+message TelegramConsumeResponse{
+  string access_token=1;
+  string refresh_token=2;
+}

@@ -1,0 +1,42 @@
+{
+  "name": "@razom-pay/contracts",
+  "version": "1.2.8",
+  "description": "Protobuf definitions and generated TypeScript types",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./gen/*": {
+      "types": "./dist/gen/*.d.ts",
+      "require": "./dist/gen/*.js",
+      "default": "./dist/gen/*.js"
+    }
+  },
+  "scripts": {
+    "build": "npm run build:src && npm run build:gen",
+    "build:src": "tsc -p tsconfig.build.json",
+    "build:gen": "tsc -p tsconfig.gen.json",
+    "generate": "protoc -I ./proto ./proto/*.proto --ts_proto_out=./gen --ts_proto_opt=nestJs=true,package=omit"
+  },
+  "files": [
+    "proto",
+    "gen",
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@nestjs/microservices": "^11.1.17",
+    "rxjs": "^7.8.2",
+    "ts-proto": "^2.11.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^6.0.2"
+  }
+}

@@ -1,0 +1,290 @@
+syntax = "proto3";
+package communities.v1;
+
+service CommunitiesService {
+  rpc CreateCommunity(CreateCommunityRequest) returns (CreateCommunityResponse);
+  rpc GetCommunity(GetCommunityRequest) returns (GetCommunityResponse);
+  rpc PatchCommunity(PatchCommunityRequest) returns (PatchCommunityResponse);
+  rpc ListMyCommunities(ListMyCommunitiesRequest) returns (ListMyCommunitiesResponse);
+  rpc JoinCommunity(JoinCommunityRequest) returns (ActionResponse);
+  rpc LeaveCommunity(LeaveCommunityRequest) returns (ActionResponse);
+  rpc InviteMember(InviteMemberRequest) returns (InviteMemberResponse);
+  rpc AcceptInvite(AcceptInviteRequest) returns (ActionResponse);
+  rpc DeclineInvite(DeclineInviteRequest) returns (ActionResponse);
+  rpc AssignRole(AssignRoleRequest) returns (ActionResponse);
+  rpc BanMember(BanMemberRequest) returns (ActionResponse);
+  rpc UnbanMember(UnbanMemberRequest) returns (ActionResponse);
+  rpc ListCommunityMembers(ListCommunityMembersRequest) returns (ListCommunityMembersResponse);
+
+  // Initiatives
+  rpc CreateInitiative(CreateInitiativeRequest) returns (CreateInitiativeResponse);
+  rpc GetInitiative(GetInitiativeRequest) returns (GetInitiativeResponse);
+  rpc ListCommunityInitiatives(ListCommunityInitiativesRequest) returns (ListCommunityInitiativesResponse);
+  // Initiative status update (called by escrow-service after settlement)
+  rpc UpdateInitiativeStatus(UpdateInitiativeStatusRequest) returns (UpdateInitiativeStatusResponse);
+}
+
+enum CommunityVisibility {
+  COMMUNITY_VISIBILITY_UNSPECIFIED = 0;
+  COMMUNITY_VISIBILITY_PUBLIC = 1;
+  COMMUNITY_VISIBILITY_PRIVATE = 2;
+}
+
+enum CommunityRole {
+  COMMUNITY_ROLE_UNSPECIFIED = 0;
+  COMMUNITY_ROLE_MEMBER = 1;
+  COMMUNITY_ROLE_MODERATOR = 2;
+  COMMUNITY_ROLE_OWNER = 3;
+}
+
+enum CommunityInviteStatus {
+  COMMUNITY_INVITE_STATUS_UNSPECIFIED = 0;
+  COMMUNITY_INVITE_STATUS_PENDING = 1;
+  COMMUNITY_INVITE_STATUS_ACCEPTED = 2;
+  COMMUNITY_INVITE_STATUS_DECLINED = 3;
+  COMMUNITY_INVITE_STATUS_CANCELED = 4;
+}
+
+enum InitiativeType {
+  INITIATIVE_TYPE_UNSPECIFIED = 0;
+  INITIATIVE_TYPE_CROWDFUNDING = 1;
+  INITIATIVE_TYPE_WHOLESALE = 2;
+}
+
+enum InitiativeStatus {
+  INITIATIVE_STATUS_UNSPECIFIED = 0;
+  INITIATIVE_STATUS_ACTIVE = 1;
+  INITIATIVE_STATUS_COMPLETED = 2;
+  INITIATIVE_STATUS_FAILED = 3;
+  INITIATIVE_STATUS_CANCELLED = 4;
+  INITIATIVE_STATUS_PROCESSING = 5; // Deadline reached, settlement in progress
+}
+
+message Community {
+  string id = 1;
+  string description = 2;
+  CommunityVisibility visibility = 3;
+  optional string location_country = 4;
+  optional string location_city = 5;
+  optional string location_street = 6;
+  optional string location_house = 7;
+  optional string avatar = 8;
+  optional string cover = 9;
+  int32 members_count = 10;
+  string created_by_user_id = 11;
+  string created_at = 12;
+  string updated_at = 13;
+}
+
+message CommunityMember {
+  string id = 1;
+  string community_id = 2;
+  string user_id = 3;
+  CommunityRole role = 4;
+  string created_at = 5;
+  string updated_at = 6;
+}
+
+message CommunityInvite {
+  string id = 1;
+  string community_id = 2;
+  string invited_user_id = 3;
+  string invited_by_user_id = 4;
+  CommunityInviteStatus status = 5;
+  string expires_at = 6;
+  string created_at = 7;
+  string updated_at = 8;
+}
+
+message ActionResponse {
+  bool ok = 1;
+}
+
+message CreateCommunityRequest {
+  string user_id = 1;
+  string description = 2;
+  CommunityVisibility visibility = 3;
+  optional string location_country = 4;
+  optional string location_city = 5;
+  optional string location_street = 6;
+  optional string location_house = 7;
+  optional string avatar = 8;
+  optional string cover = 9;
+}
+
+message CreateCommunityResponse {
+  Community community = 1;
+}
+
+message GetCommunityRequest {
+  string community_id = 1;
+}
+
+message GetCommunityResponse {
+  Community community = 1;
+}
+
+message PatchCommunityRequest {
+  string community_id = 1;
+  string user_id = 2;
+  optional string description = 3;
+  optional CommunityVisibility visibility = 4;
+  optional string location_country = 5;
+  optional string location_city = 6;
+  optional string location_street = 7;
+  optional string location_house = 8;
+  optional string avatar = 9;
+  optional string cover = 10;
+}
+
+message PatchCommunityResponse {
+  Community community = 1;
+}
+
+message ListMyCommunitiesRequest {
+  string user_id = 1;
+}
+
+message ListMyCommunitiesResponse {
+  repeated Community communities = 1;
+}
+
+message JoinCommunityRequest {
+  string community_id = 1;
+  string user_id = 2;
+}
+
+message LeaveCommunityRequest {
+  string community_id = 1;
+  string user_id = 2;
+}
+
+message InviteMemberRequest {
+  string community_id = 1;
+  string invited_user_id = 2;
+  string invited_by_user_id = 3;
+  optional string expires_at = 4;
+}
+
+message InviteMemberResponse {
+  CommunityInvite invite = 1;
+}
+
+message AcceptInviteRequest {
+  string community_id = 1;
+  string invite_id = 2;
+  string user_id = 3;
+}
+
+message DeclineInviteRequest {
+  string community_id = 1;
+  string invite_id = 2;
+  string user_id = 3;
+}
+
+message AssignRoleRequest {
+  string community_id = 1;
+  string actor_user_id = 2;
+  string target_user_id = 3;
+  CommunityRole role = 4;
+}
+
+message BanMemberRequest {
+  string community_id = 1;
+  string actor_user_id = 2;
+  string target_user_id = 3;
+  optional string reason = 4;
+  optional string expires_at = 5;
+}
+
+message UnbanMemberRequest {
+  string community_id = 1;
+  string actor_user_id = 2;
+  string target_user_id = 3;
+}
+
+message ListCommunityMembersRequest {
+  string community_id = 1;
+  string requester_user_id = 2;
+}
+
+message ListCommunityMembersResponse {
+  repeated CommunityMember members = 1;
+}
+
+message WholesaleTier {
+  int32 min_quantity = 1;
+  int32 price = 2; // in kopiiky
+}
+
+message Initiative {
+  string id = 1;
+  string community_id = 2;
+  string created_by_user_id = 3;
+  string title = 4;
+  optional string description = 5;
+  InitiativeType type = 6;
+  InitiativeStatus status = 7;
+  string deadline = 8;
+  
+  // Crowdfunding
+  optional int32 target_amount = 9;
+  optional int32 min_contribution = 10;
+  optional int32 max_contribution = 11;
+  optional int32 exact_contribution = 12;
+
+  // Wholesale
+  optional int32 wholesale_max_quantity = 13;
+  repeated WholesaleTier wholesale_tiers = 14;
+
+  string created_at = 15;
+  string updated_at = 16;
+}
+
+
+
+message CreateInitiativeRequest {
+  string community_id = 1;
+  string user_id = 2;
+  string title = 3;
+  optional string description = 4;
+  InitiativeType type = 5;
+  string deadline = 6;
+
+  optional int32 target_amount = 7;
+  optional int32 min_contribution = 8;
+  optional int32 max_contribution = 9;
+  optional int32 exact_contribution = 10;
+
+  optional int32 wholesale_max_quantity = 11;
+  repeated WholesaleTier wholesale_tiers = 12;
+}
+
+message CreateInitiativeResponse {
+  Initiative initiative = 1;
+}
+
+message GetInitiativeRequest {
+  string initiative_id = 1;
+}
+
+message GetInitiativeResponse {
+  Initiative initiative = 1;
+}
+
+message ListCommunityInitiativesRequest {
+  string community_id = 1;
+}
+
+message ListCommunityInitiativesResponse {
+  repeated Initiative initiatives = 1;
+}
+
+message UpdateInitiativeStatusRequest {
+  string initiative_id = 1;
+  InitiativeStatus status = 2;
+}
+
+message UpdateInitiativeStatusResponse {
+  Initiative initiative = 1;
+}
