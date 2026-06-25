@@ -1,10 +1,10 @@
 [
   {
-    "targets": ["gateway-service:4000"],
+    "targets": ["host.docker.internal:4000"],
     "labels": { "service": "gateway", "env": "development" }
   },
   {
-    "targets": ["auth-service:9101"],
+    "targets": ["host.docker.internal:9101"],
     "labels": { "service": "auth", "env": "development" }
   },
   {

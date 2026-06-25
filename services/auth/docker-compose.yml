@@ -1,0 +1,21 @@
+services:
+  auth-service:
+    container_name: auth-service
+    image: razom-pay/auth-service:dev
+    build:
+      context: ../..
+      dockerfile: services/auth/Dockerfile
+    restart: always
+    env_file:
+      - .env.production.local
+    ports:
+      - "127.0.0.1:9101:9101"
+      - "127.0.0.1:50051:50051"
+    volumes:
+      - ../../.logs/auth:/var/log/services/auth
+    networks:
+      - razom-pay
+
+networks:
+  razom-pay:
+    external: true
