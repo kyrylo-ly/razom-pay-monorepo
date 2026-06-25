@@ -5,6 +5,8 @@ import { RmqContext } from '@nestjs/microservices'
 import { InjectMetric } from '@willsoto/nestjs-prometheus'
 import { Counter } from 'prom-client'
 
+import { serviceName } from '../../shared/consts'
+
 @Injectable()
 export class RmqService {
 	private readonly SERVICE_NAME: string
@@ -17,7 +19,7 @@ export class RmqService {
 		@InjectMetric('rmq_events_nack_total')
 		private readonly nackTotal: Counter<string>
 	) {
-		this.SERVICE_NAME = 'notification-service'
+		this.SERVICE_NAME = serviceName
 	}
 
 	ack(context: RmqContext, event: string) {

@@ -7,6 +7,7 @@ import { AccountModule } from '../modules/account/account.module'
 import { AuthModule } from '../modules/auth/auth.module'
 import { UsersModule } from '../modules/users/users.module'
 import { MetricsModule } from '../observability/metrics/metrics.module'
+import { serviceName } from '../shared/consts'
 
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
@@ -37,7 +38,7 @@ import { getPassportConfig } from './config'
 				},
 				messageKey: 'msg',
 				customProps: () => ({
-					service: 'gateway-service'
+					service: serviceName
 				})
 			}
 		}),

@@ -8,6 +8,7 @@ import { RmqModule } from './infra/rmq/rmq.module'
 import { SmsModule } from './infra/sms/sms.module'
 import { NotificationsModule } from './modules/notifications/notifications.module'
 import { MetricsModule } from './observability/metrics/metrics.module'
+import { serviceName } from './shared/consts'
 
 @Module({
 	imports: [
@@ -37,7 +38,7 @@ import { MetricsModule } from './observability/metrics/metrics.module'
 				},
 				messageKey: 'msg',
 				customProps: () => ({
-					service: 'notification-service'
+					service: serviceName
 				})
 			}
 		}),

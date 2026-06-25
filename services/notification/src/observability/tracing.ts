@@ -1,26 +1,19 @@
-import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node'
-import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http'
-import { resourceFromAttributes } from '@opentelemetry/resources'
-import { NodeSDK } from '@opentelemetry/sdk-node'
-import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions'
+import {
+	initTracing,
+	type TracingOptions
+} from '@razom-pay/common/lib/observability/tracing'
 
-const traceExporter = new OTLPTraceExporter({
-	url: process.env.OTLP_ENDPOINT
-})
+import { serviceName } from '../shared/consts'
 
-export const otelSdk = new NodeSDK({
-	traceExporter,
-	resource: resourceFromAttributes({
-		[ATTR_SERVICE_NAME]: 'notification-service'
-	}),
-	instrumentations: [
-		getNodeAutoInstrumentations({
-			'@opentelemetry/instrumentation-http': { enabled: true },
-			'@opentelemetry/instrumentation-nestjs-core': {
-				enabled: true
-			}
-		})
-	]
-})
+const tracingOptions: TracingOptions = {
+	serviceName: serviceName,
+	otlpEndpoint: process.env.OTLP_ENDPOINT,
+	instrumentations: {
+		'@opentelemetry/instrumentation-http': { enabled: true },
+		'@opentelemetry/instrumentation-nestjs-core': {
+			enabled: true
+		}
+	}
+}
 
-otelSdk.start()
+initTracing(tracingOptions)

@@ -1,6 +1,6 @@
 {
 	"name": "@razom-pay/common",
-	"version": "1.1.12",
+	"version": "1.1.13",
 	"description": "Core shared components for Razom Pay microservice ecosystem",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -34,6 +34,11 @@
 		"@nestjs/microservices": "^11"
 	},
 	"dependencies": {
+		"@opentelemetry/auto-instrumentations-node": "^0.77.0",
+		"@opentelemetry/exporter-trace-otlp-http": "^0.219.0",
+		"@opentelemetry/resources": "^2.8.0",
+		"@opentelemetry/sdk-node": "^0.219.0",
+		"@opentelemetry/semantic-conventions": "^1.41.1",
 		"@razom-pay/contracts": "workspace:*",
 		"@trivago/prettier-plugin-sort-imports": "6.0.2"
 	}

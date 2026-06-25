@@ -5,6 +5,7 @@ import { LoggerModule } from 'nestjs-pino'
 import { DatabaseModule } from './infra/db/db.module'
 import { UsersModule } from './modules/users/users.module'
 import { MetricsModule } from './observability/metrics/metrics.module'
+import { serviceName } from './shared/consts'
 
 @Module({
 	imports: [
@@ -32,7 +33,7 @@ import { MetricsModule } from './observability/metrics/metrics.module'
 				},
 				messageKey: 'msg',
 				customProps: () => ({
-					service: 'users-service'
+					service: serviceName
 				})
 			}
 		}),
