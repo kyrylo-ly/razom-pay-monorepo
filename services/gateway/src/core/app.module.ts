@@ -31,7 +31,7 @@ import { getPassportConfig } from './config'
 						destination:
 							process.platform === 'linux'
 								? '/var/log/services/gateway/gateway.log'
-								: '.logs/gateway/gateway.log',
+								: '../../.logs/gateway/gateway.log',
 						mkdir: true
 					}
 				},

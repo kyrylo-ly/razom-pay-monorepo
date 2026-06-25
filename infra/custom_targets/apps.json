@@ -1,0 +1,18 @@
+[
+  {
+    "targets": ["gateway-service:4000"],
+    "labels": { "service": "gateway", "env": "development" }
+  },
+  {
+    "targets": ["auth-service:9101"],
+    "labels": { "service": "auth", "env": "development" }
+  },
+  {
+    "targets": ["notification-service:9102"],
+    "labels": { "service": "notification", "env": "development" }
+  },
+  {
+    "targets": ["users-service:9103"],
+    "labels": { "service": "users", "env": "development" }
+  }
+]

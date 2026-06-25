@@ -96,7 +96,13 @@ services:
     restart: always
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./custom_targets:/etc/prometheus/custom_targets:ro
       - prometheus_data:/prometheus
+    extra_hosts:
+      - "gateway-service:host-gateway"
+      - "auth-service:host-gateway"
+      - "notification-service:host-gateway"
+      - "users-service:host-gateway"
     ports:
       - "9090:9090"
     networks:
