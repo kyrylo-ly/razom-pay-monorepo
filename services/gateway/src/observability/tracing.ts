@@ -7,7 +7,7 @@ import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions'
 const traceExporter = new OTLPTraceExporter({
 	// TODO: Check working with 4317 istead of 4318/v1/traces
 	// Use 4318/v1/traces for Jaeger and OTEL Collector, 4317 is for OTEL Collector gRPC
-	url: 'http://jaeger:4318/v1/traces'
+	url: process.env.OTLP_ENDPOINT
 })
 
 export const otelSdk = new NodeSDK({

@@ -5,7 +5,7 @@ import { NodeSDK } from '@opentelemetry/sdk-node'
 import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions'
 
 const traceExporter = new OTLPTraceExporter({
-	url: 'http://jaeger:4318/v1/traces'
+	url: process.env.OTLP_ENDPOINT
 })
 
 export const otelSdk = new NodeSDK({
