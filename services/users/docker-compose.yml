@@ -1,0 +1,18 @@
+services:
+    users-service:
+        container_name: users-service
+        image: razom-pay/users-service:dev
+        build:
+            context: ../..
+            dockerfile: services/users/Dockerfile
+        restart: always
+        env_file:
+            - .env.production.local
+        volumes:
+            - ../../.logs/users:/var/log/services/users
+        networks:
+            - razom-pay
+
+networks:
+    razom-pay:
+        external: true

@@ -1,0 +1,66 @@
+name: Users Service
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "services/users/**"
+      - "packages/core/**"
+      - "packages/common/**"
+      - "packages/contracts/**"
+      - "packages/passport/**"
+
+  pull_request:
+    branches: [main]
+    paths:
+      - "services/users/**"
+      - "packages/core/**"
+      - "packages/common/**"
+      - "packages/contracts/**"
+      - "packages/passport/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # enable when add tests
+      # - run: pnpm --filter users test
+
+      - run: pnpm --filter users... build
+
+      - run: pnpm --filter users lint
+
+  docker:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: services/users/Dockerfile
+          push: true
+          tags: ghcr.io/${{ github.repository }}/users:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
