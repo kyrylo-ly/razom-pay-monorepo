@@ -33,6 +33,9 @@ import { GrpcMetricsInterceptor } from './grpc-metrics.interceptor'
 			useClass: GrpcMetricsInterceptor
 		}
 	],
-	exports: []
+	exports: [
+		'PROM_METRIC_GRPC_REQUEST_DURATION_SECONDS',
+		'PROM_METRIC_GRPC_REQUESTS_TOTAL'
+	]
 })
 export class MetricsModule {}

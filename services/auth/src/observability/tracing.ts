@@ -16,7 +16,7 @@ export const otelSdk = new NodeSDK({
 	instrumentations: [
 		getNodeAutoInstrumentations({
 			'@opentelemetry/instrumentation-grpc': { enabled: true },
-			'@opentelemetry/instrumentation-http': { enabled: true },
+			'@opentelemetry/instrumentation-http': { enabled: false },
 			'@opentelemetry/instrumentation-nestjs-core': {
 				enabled: true
 			},
