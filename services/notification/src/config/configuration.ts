@@ -1,0 +1,32 @@
+import validationSchema from './validation.schema'
+
+export default () => {
+	const parsed = validationSchema.safeParse(process.env)
+
+	if (!parsed.success) {
+		console.error('Invalid enviroment variables', parsed.error.format())
+		process.exit(1)
+	}
+
+	const env = parsed.data
+
+	return {
+		app: {
+			nodeEnv: env.NODE_ENV
+		},
+		rmq: { url: env.RMQ_URL, queue: env.RMQ_QUEUE },
+		smtp: {
+			host: env.SMTP_HOST,
+			port: env.SMTP_PORT,
+			user: env.SMTP_USERNAME,
+			password: env.SMTP_PASSWORD,
+			fromAddress: env.SMTP_FROM_ADDRESS,
+			secure: env.SMTP_SECURE
+		},
+		twilio: {
+			accountSid: env.TWILIO_ACCOUNT_SID,
+			authToken: env.TWILIO_AUTH_TOKEN,
+			serviceSid: env.TWILIO_SERVICE_SID
+		}
+	}
+}
