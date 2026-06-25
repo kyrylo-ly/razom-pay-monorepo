@@ -16,8 +16,6 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-COPY package*.json yarn.lock ./
-
 COPY --from=builder /app/deploy ./
 
 CMD ["node", "dist/main"]
