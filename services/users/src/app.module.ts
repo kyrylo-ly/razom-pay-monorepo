@@ -8,11 +8,14 @@ import { ObservabilityModule } from './observability/observability.module'
 
 @Module({
 	imports: [
-		ConfigModule.forRoot({ isGlobal: true, envFilePath: [
+		ConfigModule.forRoot({
+			isGlobal: true,
+			envFilePath: [
 				`.env.${process.env.NODE_ENV}.local`,
 				`.env.${process.env.NODE_ENV}`,
 				'.env'
-			], }),
+			]
+		}),
 		LoggerModule.forRoot({
 			pinoHttp: {
 				level: process.env.LOG_LEVEL,
