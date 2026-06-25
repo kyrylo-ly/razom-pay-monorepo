@@ -76,7 +76,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(up{job=~\"gateway|auth|notification|users|postgres|redis|rabbitmq|node|prometheus\"})",
+          "expr": "sum(up{job=~\"postgres|redis|rabbitmq|node|prometheus\"} or up{service=~\"gateway|auth|notification|users\"})",
           "legendFormat": "up",
           "range": true,
           "refId": "A"
@@ -122,8 +122,8 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(rate(http_requests_total[5m])) by (job)",
-          "legendFormat": "{{job}}",
+          "expr": "sum(rate(http_requests_total[5m])) by (service)",
+          "legendFormat": "{{service}}",
           "range": true,
           "refId": "A"
         }
@@ -168,8 +168,8 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "histogram_quantile(0.95, sum by (le, job) (rate(http_request_duration_seconds_bucket[5m])))",
-          "legendFormat": "{{job}} p95",
+          "expr": "histogram_quantile(0.95, sum by (le, service) (rate(http_request_duration_seconds_bucket[5m])))",
+          "legendFormat": "{{service}} p95",
           "range": true,
           "refId": "A"
         }
@@ -214,8 +214,8 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(rate(grpc_requests_total[5m])) by (job)",
-          "legendFormat": "{{job}}",
+          "expr": "sum(rate(grpc_requests_total[5m])) by (service)",
+          "legendFormat": "{{service}}",
           "range": true,
           "refId": "A"
         }
@@ -260,8 +260,8 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "process_resident_memory_bytes{job=~\"gateway|auth|notification|users\"}",
-          "legendFormat": "{{job}}",
+          "expr": "process_resident_memory_bytes{service=~\"gateway|auth|notification|users\"}",
+          "legendFormat": "{{service}}",
           "range": true,
           "refId": "A"
         }
@@ -306,8 +306,8 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(http_in_progress_requests) by (job)",
-          "legendFormat": "{{job}}",
+          "expr": "sum(http_in_progress_requests) by (service)",
+          "legendFormat": "{{service}}",
           "range": true,
           "refId": "A"
         }
