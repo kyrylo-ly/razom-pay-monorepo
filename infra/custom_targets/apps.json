@@ -8,11 +8,11 @@
     "labels": { "service": "auth", "env": "development" }
   },
   {
-    "targets": ["notification-service:9102"],
+    "targets": ["host.docker.internal:9102"],
     "labels": { "service": "notification", "env": "development" }
   },
   {
-    "targets": ["users-service:9103"],
+    "targets": ["host.docker.internal:9103"],
     "labels": { "service": "users", "env": "development" }
   }
 ]
