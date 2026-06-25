@@ -1,0 +1,42 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+
+scrape_configs:
+  - job_name: auth-logs
+    static_configs:
+      - targets: [localhost]
+        labels:
+          job: auth
+          service: auth-service
+          __path__: /var/log/services/auth/*.log
+
+  - job_name: gateway-logs
+    static_configs:
+      - targets: [localhost]
+        labels:
+          job: gateway
+          service: gateway-service
+          __path__: /var/log/services/gateway/*.log
+
+  - job_name: notification-logs
+    static_configs:
+      - targets: [localhost]
+        labels:
+          job: notification
+          service: notification-service
+          __path__: /var/log/services/notification/*.log
+
+  - job_name: users-logs
+    static_configs:
+      - targets: [localhost]
+        labels:
+          job: users
+          service: users-service
+          __path__: /var/log/services/users/*.log
