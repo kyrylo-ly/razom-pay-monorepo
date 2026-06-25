@@ -7,7 +7,7 @@ import { MailModule } from './infra/mail/mail.module'
 import { RmqModule } from './infra/rmq/rmq.module'
 import { SmsModule } from './infra/sms/sms.module'
 import { NotificationsModule } from './modules/notifications/notifications.module'
-import { ObservabilityModule } from './observability/observability.module'
+import { MetricsModule } from './observability/metrics/metrics.module'
 
 @Module({
 	imports: [
@@ -41,7 +41,7 @@ import { ObservabilityModule } from './observability/observability.module'
 			}
 		}),
 		RmqModule,
-		ObservabilityModule,
+		MetricsModule,
 		NotificationsModule,
 		MailModule,
 		SmsModule

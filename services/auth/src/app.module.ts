@@ -19,7 +19,7 @@ import { OtpModule } from './modules/otp/otp.module'
 import { TelegramModule } from './modules/telegram/telegram.module'
 import { TokenModule } from './modules/token/token.module'
 import { UsersModule } from './modules/users/users.module'
-import { ObservabilityModule } from './observability/observability.module'
+import { MetricsModule } from './observability/metrics/metrics.module'
 
 @Module({
 	imports: [
@@ -61,9 +61,8 @@ import { ObservabilityModule } from './observability/observability.module'
 		PrismaModule,
 		RedisModule,
 		AuthModule,
-		RedisModule,
 		MessagingModule,
-		ObservabilityModule,
+		MetricsModule,
 		OtpModule,
 		AccountModule,
 		TelegramModule,
