@@ -31,11 +31,11 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       # enable when add tests
-      # - run: pnpm --filter bor test
+      # - run: pnpm --filter bot test
 
-      - run: pnpm --filter bor... build
+      - run: pnpm --filter bot... build
 
-      - run: pnpm --filter bor lint
+      - run: pnpm --filter bot lint
 
   docker:
     needs: build
@@ -55,8 +55,8 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           context: .
-          file: services/bor/Dockerfile
+          file: services/bot/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}/bor:${{ github.sha }}
+          tags: ghcr.io/${{ github.repository }}/bot:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
