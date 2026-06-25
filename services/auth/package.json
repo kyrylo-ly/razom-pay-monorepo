@@ -39,6 +39,7 @@
 		"@razom-pay/common": "workspace:*",
 		"@razom-pay/contracts": "workspace:*",
 		"@razom-pay/passport": "workspace:*",
+		"@trivago/prettier-plugin-sort-imports": "6.0.2",
 		"@willsoto/nestjs-prometheus": "^6.1.0",
 		"amqp-connection-manager": "^5.0.0",
 		"amqplib": "^1.0.3",

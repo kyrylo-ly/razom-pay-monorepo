@@ -165,6 +165,9 @@ importers:
       '@razom-pay/passport':
         specifier: workspace:*
         version: link:../../packages/passport
+      '@trivago/prettier-plugin-sort-imports':
+        specifier: 6.0.2
+        version: 6.0.2(prettier@3.8.4)
       '@willsoto/nestjs-prometheus':
         specifier: ^6.1.0
         version: 6.1.0(@nestjs/common@11.1.27(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(prom-client@15.1.3)

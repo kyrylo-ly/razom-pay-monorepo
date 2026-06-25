@@ -98,7 +98,6 @@ export class TelegramService {
 		}
 	}
 
-
 	checkTelegramAuth(query: Record<string, string>) {
 		const hash = query.hash
 
