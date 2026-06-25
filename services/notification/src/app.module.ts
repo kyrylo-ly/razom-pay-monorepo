@@ -24,6 +24,7 @@ import { MetricsModule } from './observability/metrics/metrics.module'
 		LoggerModule.forRoot({
 			pinoHttp: {
 				level: process.env.LOG_LEVEL,
+				autoLogging: false,
 				transport: {
 					target: 'pino/file',
 					options: {
