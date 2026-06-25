@@ -1,0 +1,16 @@
+services:
+    bot-service:
+        container_name: bot-service
+        image: razom-pay/bot-service:dev
+        build:
+            context: ../..
+            dockerfile: services/bot/Dockerfile
+        restart: always
+        env_file:
+            - .env.production.local
+        networks:
+            - razom-pay
+
+networks:
+    razom-pay:
+        external: true
