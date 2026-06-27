@@ -31,8 +31,8 @@ import { serviceName } from './shared/consts'
 					options: {
 						destination:
 							process.platform === 'linux'
-								? '/var/log/services/notification/notification.log'
-								: '.logs/notification/notification.log',
+								? '/var/log/services/notifications/notifications.log'
+								: '.logs/notifications/notifications.log',
 						mkdir: true
 					}
 				},

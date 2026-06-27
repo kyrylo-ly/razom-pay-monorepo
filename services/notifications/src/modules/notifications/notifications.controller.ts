@@ -27,7 +27,7 @@ export class NotificationsController {
 		@InjectMetric('rmq_events_total')
 		private readonly eventsTotal: Counter<string>
 	) {
-		this.SERVICE_ANME = 'notification-servixe'
+		this.SERVICE_ANME = 'notifications-servixe'
 	}
 
 	@EventPattern('auth.otp.requested')

@@ -1,17 +1,17 @@
-name: Notification Service
+name: Notifications Service
 
 on:
   push:
     branches: [main]
     paths:
-      - "services/notification/**"
+      - "services/notifications/**"
       - "packages/core/**"
       - "packages/contracts/**"
 
   pull_request:
     branches: [main]
     paths:
-      - "services/notification/**"
+      - "services/notifications/**"
       - "packages/core/**"
       - "packages/contracts/**"
 
@@ -31,11 +31,11 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       # enable when add tests
-      # - run: pnpm --filter notification test
+      # - run: pnpm --filter notifications test
 
-      - run: pnpm --filter notification... build
+      - run: pnpm --filter notifications... build
 
-      - run: pnpm --filter notification lint
+      - run: pnpm --filter notifications lint
 
   docker:
     needs: build
@@ -55,8 +55,8 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           context: .
-          file: services/notification/Dockerfile
+          file: services/notifications/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}/notification:${{ github.sha }}
+          tags: ghcr.io/${{ github.repository }}/notifications:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
