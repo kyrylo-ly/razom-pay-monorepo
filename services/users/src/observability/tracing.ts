@@ -1,7 +1,4 @@
-import {
-	initTracing,
-	type TracingOptions
-} from '@razom-pay/common/lib/observability/tracing'
+import { initTracing, type TracingOptions } from '@razom-pay/common'
 
 import { serviceName } from '../shared/consts'
 
