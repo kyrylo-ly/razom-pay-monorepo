@@ -8,6 +8,7 @@ import { RmqModule } from './infra/rmq/rmq.module'
 import { SmsModule } from './infra/sms/sms.module'
 import { NotificationsModule } from './modules/notifications/notifications.module'
 import { MetricsModule } from './observability/metrics/metrics.module'
+import { serviceName } from './shared/consts'
 
 @Module({
 	imports: [
@@ -30,14 +31,14 @@ import { MetricsModule } from './observability/metrics/metrics.module'
 					options: {
 						destination:
 							process.platform === 'linux'
-								? '/var/log/services/notification/notification.log'
-								: '.logs/notification/notification.log',
+								? '/var/log/services/notifications/notifications.log'
+								: '.logs/notifications/notifications.log',
 						mkdir: true
 					}
 				},
 				messageKey: 'msg',
 				customProps: () => ({
-					service: 'notification-service'
+					service: serviceName
 				})
 			}
 		}),

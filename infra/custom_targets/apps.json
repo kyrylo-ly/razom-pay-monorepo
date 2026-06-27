@@ -9,7 +9,7 @@
   },
   {
     "targets": ["host.docker.internal:9102"],
-    "labels": { "service": "notification", "env": "development" }
+    "labels": { "service": "notifications", "env": "development" }
   },
   {
     "targets": ["host.docker.internal:9103"],

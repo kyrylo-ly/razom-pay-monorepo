@@ -7,9 +7,9 @@ COPY . .
 
 RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store pnpm install --frozen-lockfile
 
-RUN pnpm --filter notification... build
+RUN pnpm --filter notifications... build
 
-RUN pnpm --filter notification deploy --legacy /app/deploy
+RUN pnpm --filter notifications deploy --legacy /app/deploy
 
 FROM node:24-slim AS runner
 WORKDIR /app

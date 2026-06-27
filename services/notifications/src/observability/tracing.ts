@@ -6,12 +6,10 @@ const tracingOptions: TracingOptions = {
 	serviceName: serviceName,
 	otlpEndpoint: process.env.OTLP_ENDPOINT,
 	instrumentations: {
-		'@opentelemetry/instrumentation-grpc': { enabled: true },
-		'@opentelemetry/instrumentation-http': { enabled: false },
+		'@opentelemetry/instrumentation-http': { enabled: true },
 		'@opentelemetry/instrumentation-nestjs-core': {
 			enabled: true
-		},
-		'@opentelemetry/instrumentation-pg': { enabled: true }
+		}
 	}
 }
 

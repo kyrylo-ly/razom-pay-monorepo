@@ -1,30 +1,20 @@
-import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node'
-import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http'
-import { resourceFromAttributes } from '@opentelemetry/resources'
-import { NodeSDK } from '@opentelemetry/sdk-node'
-import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions'
+import { initTracing, type TracingOptions } from '@razom-pay/common'
 
-const traceExporter = new OTLPTraceExporter({
+import { serviceName } from '../shared/consts'
+
+const tracingOptions: TracingOptions = {
+	serviceName: serviceName,
 	// TODO: Check working with 4317 istead of 4318/v1/traces
 	// Use 4318/v1/traces for Jaeger and OTEL Collector, 4317 is for OTEL Collector gRPC
-	url: process.env.OTLP_ENDPOINT
-})
+	otlpEndpoint: process.env.OTLP_ENDPOINT,
+	instrumentations: {
+		'@opentelemetry/instrumentation-http': { enabled: true },
+		'@opentelemetry/instrumentation-express': { enabled: true },
+		'@opentelemetry/instrumentation-nestjs-core': {
+			enabled: true
+		},
+		'@opentelemetry/instrumentation-grpc': { enabled: true }
+	}
+}
 
-export const otelSdk = new NodeSDK({
-	traceExporter,
-	resource: resourceFromAttributes({
-		[ATTR_SERVICE_NAME]: 'gateway-service'
-	}),
-	instrumentations: [
-		getNodeAutoInstrumentations({
-			'@opentelemetry/instrumentation-http': { enabled: true },
-			'@opentelemetry/instrumentation-express': { enabled: true },
-			'@opentelemetry/instrumentation-nestjs-core': {
-				enabled: true
-			},
-			'@opentelemetry/instrumentation-grpc': { enabled: true }
-		})
-	]
-})
-
-otelSdk.start()
+initTracing(tracingOptions)
