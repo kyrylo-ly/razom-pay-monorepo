@@ -25,13 +25,13 @@ scrape_configs:
           service: gateway-service
           __path__: /var/log/services/gateway/*.log
 
-  - job_name: notification-logs
+  - job_name: notifications-logs
     static_configs:
       - targets: [localhost]
         labels:
-          job: notification
-          service: notification-service
-          __path__: /var/log/services/notification/*.log
+          job: notifications
+          service: notifications-service
+          __path__: /var/log/services/notifications/*.log
 
   - job_name: users-logs
     static_configs:

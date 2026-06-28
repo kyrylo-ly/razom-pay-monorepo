@@ -256,13 +256,13 @@ importers:
         version: 17.4.2
       eslint:
         specifier: ^9.18.0
-        version: 9.39.4(jiti@2.7.0)
+        version: 9.39.4(jiti@2.7.0)(supports-color@5.5.0)
       eslint-config-prettier:
         specifier: ^10.0.1
-        version: 10.1.8(eslint@9.39.4(jiti@2.7.0))
+        version: 10.1.8(eslint@9.39.4(jiti@2.7.0)(supports-color@5.5.0))
       eslint-plugin-prettier:
         specifier: ^5.2.2
-        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0))(prettier@3.8.4)
+        version: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@9.39.4(jiti@2.7.0)(supports-color@5.5.0)))(eslint@9.39.4(jiti@2.7.0)(supports-color@5.5.0))(prettier@3.8.4)
       globals:
         specifier: ^16.0.0
         version: 16.5.0
@@ -295,7 +295,7 @@ importers:
         version: 5.9.3
       typescript-eslint:
         specifier: ^8.20.0
-        version: 8.62.0(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
+        version: 8.62.0(eslint@9.39.4(jiti@2.7.0)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.9.3)
 
   services/bot:
     dependencies:
@@ -591,7 +591,7 @@ importers:
         specifier: ^8.20.0
         version: 8.62.0(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
 
-  services/notification:
+  services/notifications:
     dependencies:
       '@nestjs-modules/mailer':
         specifier: ^2.3.4

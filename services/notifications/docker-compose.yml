@@ -1,10 +1,10 @@
 services:
-    notification-service:
-        container_name: notification-service
-        image: razom-pay/notification-service:dev
+    notifications-service:
+        container_name: notifications-service
+        image: razom-pay/notifications-service:dev
         build:
             context: ../..
-            dockerfile: services/notification/Dockerfile
+            dockerfile: services/notifications/Dockerfile
         restart: always
         env_file:
             - .env.production.local
@@ -12,7 +12,7 @@ services:
             - '127.0.0.1:9102:9102'
             - '127.0.0.1:50052:50052'
         volumes:
-            - ../../.logs/notification:/var/log/services/notification
+            - ../../.logs/notifications:/var/log/services/notifications
         networks:
             - razom-pay
 

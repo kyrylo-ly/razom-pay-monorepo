@@ -76,7 +76,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(up{job=~\"postgres|redis|rabbitmq|node|prometheus\"} or up{service=~\"gateway|auth|notification|users\"})",
+          "expr": "sum(up{job=~\"postgres|redis|rabbitmq|node|prometheus\"} or up{service=~\"gateway|auth|notifications|users\"})",
           "legendFormat": "up",
           "range": true,
           "refId": "A"
