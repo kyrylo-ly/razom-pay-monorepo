@@ -1,0 +1,20 @@
+syntax = "proto3";
+package communities.v1;
+
+service CommunitiesService {
+  rpc GetCommunity(GetCommunityRequest) returns (GetCommunityResponse);
+}
+
+message GetCommunityRequest {
+  string id = 1;
+}
+
+message GetCommunityResponse {
+  string name = 1;
+  string description = 2;
+}
+
+message CreateCommunityRequest {
+  string name = 1;
+  string description = 2;
+}
