@@ -1,0 +1,14 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Community {
+  id        String   @id @default(nanoid())
+  name String
+}

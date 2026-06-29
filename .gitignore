@@ -59,3 +59,5 @@ agents-offers
 
 loki-data/
 loki-wal/
+
+**/prisma/generated

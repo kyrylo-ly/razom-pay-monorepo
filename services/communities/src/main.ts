@@ -1,25 +1,19 @@
+import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
+
 import { AppModule } from "./app.module";
-import { Transport, type MicroserviceOptions } from "@nestjs/microservices";
-import { PROTO_PATHS } from "@razom-pay/contracts";
+import { createGrpcServer } from "./infra/grpc/grpc.server";
+import "./observability/tracing";
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.GRPC,
-    options: {
-      package: ["auth.v1", "account.v1"],
-      protoPath: [PROTO_PATHS.AUTH, PROTO_PATHS.ACCOUNT],
-      loader: {
-        keepCase: false,
-        longs: String,
-        enums: Number,
-        defaults: true,
-        oneofs: true,
-      },
-    },
-  });
+  const configService = app.get(ConfigService);
+
+  createGrpcServer(app, configService);
+
   await app.startAllMicroservices();
   await app.listen(9104);
 }
+
 bootstrap();
